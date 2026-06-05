@@ -56,11 +56,11 @@ public class Bullet : MonoBehaviour
         // Cek apakah menabrak Musuh atau Tembok
         if (collision.CompareTag("Enemy"))
         {
-            // Terapkan damage jika musuh memiliki komponen Health (opsional)
-            // if (collision.TryGetComponent<Health>(out var health))
-            // {
-            //     health.TakeDamage(damage);
-            // }
+            // Terapkan damage ke musuh
+            if (collision.TryGetComponent<EnemyMelee>(out var enemy))
+            {
+                enemy.TakeDamage(damage);
+            }
 
             Debug.Log($"Menabrak musuh! Memberikan {damage} damage.");
             Explode();

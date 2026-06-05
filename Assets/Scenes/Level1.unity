@@ -35859,7 +35859,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -15, y: -9, z: 0}
@@ -36641,7 +36641,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -20, y: -3, z: 0}
@@ -36917,7 +36917,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -23, y: 3, z: 0}
@@ -37653,7 +37653,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 30, y: 20, z: 0}
@@ -37699,7 +37699,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 30, y: 21, z: 0}
@@ -38090,7 +38090,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 26, y: 22, z: 0}
@@ -40700,7 +40700,7 @@ GameObject:
   - component: {fileID: 1901998920}
   - component: {fileID: 1901998919}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: MapBoundaries_Lt-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40743,8 +40743,31 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
+  - {x: 0.51358414, y: 0.66334033}
+  - {x: 0.53714085, y: -0.09021437}
+  - {x: 0.5648327, y: -6.3035617}
+  - {x: 3.7935991, y: -6.282051}
+  - {x: 3.8033504, y: -6.95393}
+  - {x: 5.0449896, y: -6.942121}
+  - {x: 5.069982, y: -7.59629}
+  - {x: 5.702961, y: -7.5947046}
+  - {x: 5.723265, y: -8.254237}
+  - {x: 20.976831, y: -8.231899}
+  - {x: 20.961393, y: -7.5852466}
+  - {x: 21.583788, y: -7.581948}
+  - {x: 21.587542, y: -5.0115466}
+  - {x: 22.203236, y: -5.008403}
+  - {x: 22.197083, y: -4.3841553}
+  - {x: 24.26769, y: -4.3856525}
+  - {x: 24.282808, y: -5.0037494}
+  - {x: 24.905834, y: -5.0164547}
+  - {x: 24.946808, y: -8.8771515}
+  - {x: 28.133461, y: -8.865172}
+  - {x: 28.161583, y: -9.498763}
+  - {x: 35.657753, y: -9.471792}
+  - {x: 35.659817, y: -6.8860836}
+  - {x: 37.53818, y: -6.894585}
+  - {x: 38.83525, y: -6.2836103}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -40758,7 +40781,7 @@ Transform:
   m_GameObject: {fileID: 1901998918}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.68691, y: 3.8128796, z: 0}
+  m_LocalPosition: {x: -13.312, y: 1.262, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -56,10 +56,14 @@ public class Bullet : MonoBehaviour
         // Cek apakah menabrak Musuh atau Tembok
         if (collision.CompareTag("Enemy"))
         {
-            // Terapkan damage ke musuh
-            if (collision.TryGetComponent<EnemyMelee>(out var enemy))
+            // Terapkan damage ke musuh (jarak dekat atau jarak jauh)
+            if (collision.TryGetComponent<EnemyMelee>(out var meleeEnemy))
             {
-                enemy.TakeDamage(damage);
+                meleeEnemy.TakeDamage(damage);
+            }
+            else if (collision.TryGetComponent<EnemyRanged>(out var rangedEnemy))
+            {
+                rangedEnemy.TakeDamage(damage);
             }
 
             Debug.Log($"Menabrak musuh! Memberikan {damage} damage.");

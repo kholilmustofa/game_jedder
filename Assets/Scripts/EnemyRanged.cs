@@ -2,23 +2,27 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class EnemyMelee : MonoBehaviour
+public class EnemyRanged : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    [SerializeField] private int maxHealth = 30;
+    [SerializeField] private int maxHealth = 25;
     private int currentHealth;
 
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float chaseRadius = 5f;   // Jarak mulai mengejar Player
-    [SerializeField] private float attackRadius = 0.7f; // Jarak untuk mulai menyerang Player
+    [SerializeField] private float moveSpeed = 2.5f;
+    [SerializeField] private float chaseRadius = 8f;   // Jarak mulai mengejar Player
+    [SerializeField] private float attackRadius = 5f;  // Jarak tembak anak panah
 
     [Header("Combat Settings")]
-    [SerializeField] private int attackDamage = 15;
-    [SerializeField] private float attackCooldown = 1.5f; // Jeda waktu antar serangan
-    [SerializeField] private float delayBeforeDamage = 0.25f; // Jeda sebelum damage (sinkronisasi animasi)
-    [SerializeField] private float delayAfterDamage = 0.25f;  // Jeda setelah damage (selesai animasi)
+    [SerializeField] private int attackDamage = 10; // Kerusakan dari anak panah
+    [SerializeField] private float attackCooldown = 0f; // Jeda waktu antar tembakan
+    [SerializeField] private float delayBeforeShoot = 1f; // Jeda sebelum menembak (sinkronisasi animasi)
+    [SerializeField] private float delayAfterShoot = 1f;  // Jeda setelah menembak (selesai animasi)
     private float nextAttackTime;
+
+    [Header("Ranged Settings")]
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Transform firePoint;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
@@ -64,20 +68,27 @@ public class EnemyMelee : MonoBehaviour
 
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-        // Abaikan gerakan jika sedang dalam animasi menyerang
+        // Abaikan gerakan jika sedang dalam animasi menyerang/menembak
         if (isAttacking)
         {
             rb.linearVelocity = Vector2.zero;
+            // Wajah tetap menghadap ke player saat menembak
+            FacePlayer();
             return;
         }
 
         if (distanceToPlayer <= attackRadius)
         {
-            // Stop bergerak dan lakukan serangan jika cooldown selesai
+            // Stop bergerak dan lakukan tembakan jika cooldown selesai
             rb.linearVelocity = Vector2.zero;
+            FacePlayer();
             if (Time.time >= nextAttackTime)
             {
-                StartCoroutine(AttackCoroutine());
+                StartCoroutine(ShootCoroutine());
+            }
+            else
+            {
+                if (animator != null) animator.Play("Idle");
             }
         }
         else if (distanceToPlayer <= chaseRadius)
@@ -91,6 +102,17 @@ public class EnemyMelee : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             if (animator != null) animator.Play("Idle");
         }
+    }
+
+    private void FacePlayer()
+    {
+        if (playerTransform == null || spriteRenderer == null) return;
+
+        // Hadap ke arah player
+        if (playerTransform.position.x < transform.position.x)
+            spriteRenderer.flipX = true; // Hadap kiri
+        else
+            spriteRenderer.flipX = false; // Hadap kanan
     }
 
     private void MoveTowardsPlayer()
@@ -144,33 +166,39 @@ public class EnemyMelee : MonoBehaviour
         }
     }
 
-    private IEnumerator AttackCoroutine()
+    private IEnumerator ShootCoroutine()
     {
         isAttacking = true;
         nextAttackTime = Time.time + attackCooldown;
 
-        // Putar animasi serang
+        // Putar animasi menyerang/menembak
         if (animator != null)
         {
-            animator.Play("Attack 1");
+            animator.Play("Shoot");
         }
 
-        // Tunggu jeda sebelum damage agar visual pas saat senjata mengayun
-        yield return new WaitForSeconds(delayBeforeDamage);
+        // Tunggu jeda sebelum anak panah keluar agar pas dengan visual animasi menarik busur
+        yield return new WaitForSeconds(delayBeforeShoot);
 
-        // Cek lagi apakah player masih dalam jarak serang saat hit terjadi
-        if (playerTransform != null && Vector2.Distance(transform.position, playerTransform.position) <= attackRadius + 0.3f)
+        // Tembakkan anak panah
+        if (arrowPrefab != null && firePoint != null && playerTransform != null)
         {
-            if (playerHealth != null)
+            // Hitung arah panah dari FirePoint ke Player
+            Vector2 shootDir = (playerTransform.position - firePoint.position).normalized;
+            float angle = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
+            
+            // Instansiasi anak panah dengan rotasi menghadap Player
+            GameObject arrowObj = Instantiate(arrowPrefab, firePoint.position, Quaternion.Euler(0, 0, angle));
+            if (arrowObj.TryGetComponent<EnemyArrow>(out var arrowComponent))
             {
-                playerHealth.TakeDamage(attackDamage);
+                arrowComponent.SetDamage(attackDamage);
             }
+            Debug.Log($"{gameObject.name} menembakkan anak panah ke arah Player dengan damage {attackDamage}!");
         }
 
-        // Tunggu sisa durasi animasi serang selesai sebelum musuh bisa jalan lagi
-        yield return new WaitForSeconds(delayAfterDamage);
+        // Tunggu sisa durasi animasi menembak selesai sebelum musuh bisa jalan lagi
+        yield return new WaitForSeconds(delayAfterShoot);
 
-        // Kembalikan ke animasi Idle saat jeda cooldown
         if (animator != null)
         {
             animator.Play("Idle");
@@ -215,7 +243,6 @@ public class EnemyMelee : MonoBehaviour
     private void Die()
     {
         Debug.Log($"{gameObject.name} mati!");
-        // Anda bisa menambahkan animasi mati atau efek partikel di sini sebelum dihancurkan
         Destroy(gameObject);
     }
 }

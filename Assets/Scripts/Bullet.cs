@@ -23,6 +23,11 @@ public class Bullet : MonoBehaviour
         if (bulletCollider == null) bulletCollider = GetComponent<Collider2D>();
     }
 
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
+
     private void Start()
     {
         // Catat posisi awal peluru saat baru ditembakkan

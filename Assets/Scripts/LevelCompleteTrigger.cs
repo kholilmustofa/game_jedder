@@ -16,18 +16,25 @@ public class LevelCompleteTrigger : MonoBehaviour
     }
 
     /// <summary>
-    /// Fungsi untuk membuka kunci Level 2 secara permanen menggunakan PlayerPrefs.
-    /// Fungsi ini juga bisa dipanggil langsung oleh script kemenangan/Manager Anda lainnya!
+    /// Fungsi untuk membuka kunci Level 2 secara permanen menggunakan PlayerPrefs dan memunculkan panel sukses.
     /// </summary>
     public void UnlockNextLevel()
     {
-        Debug.Log("Selamat! Level 1 Selesai. Membuka kunci Level 2...");
+        Debug.Log("Selamat! Level Selesai. Membuka kunci Level 2...");
         
-        // Menyimpan data "Level2Unlocked" = 1 (Artinya Terbuka) secara permanen di memori
+        // 1. Menyimpan data "Level2Unlocked" = 1 (Artinya Terbuka) secara permanen di memori
         PlayerPrefs.SetInt("Level2Unlocked", 1);
         PlayerPrefs.Save(); // Simpan perubahan ke penyimpanan perangkat
         
-        // Optional: Anda bisa langsung memuat scene Level Select atau menampilkan modal kemenangan di sini
-        // SceneManager.LoadScene(levelSelectSceneName);
+        // 2. Munculkan panel Game Success dari GameplayMenuController
+        GameplayMenuController menu = FindFirstObjectByType<GameplayMenuController>();
+        if (menu != null)
+        {
+            menu.ShowGameSuccess();
+        }
+        else
+        {
+            Debug.LogWarning("GameplayMenuController tidak ditemukan di scene!");
+        }
     }
 }

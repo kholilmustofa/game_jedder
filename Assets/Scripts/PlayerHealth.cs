@@ -20,6 +20,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Color damageColor = Color.red;
     private Color originalColor = Color.white;
 
+    [Header("Game Over Settings")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameplayMenuController menuController;
+    [SerializeField] private string deathAnimationName = "Player_Death"; // Nama state animasi mati di Animator Controller
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -39,6 +44,18 @@ public class PlayerHealth : MonoBehaviour
         if (spriteRenderer != null)
         {
             originalColor = spriteRenderer.color;
+        }
+
+        // Cari Animator jika belum diset
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+
+        // Cari GameplayMenuController di Scene jika belum diset
+        if (menuController == null)
+        {
+            menuController = FindFirstObjectByType<GameplayMenuController>();
         }
     }
 
@@ -121,6 +138,42 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player mati! Game Over.");
-        // Di sini Anda bisa memanggil GameManager untuk memunculkan modal Game Over
+
+        // 1. Matikan kontrol pergerakan Player
+        if (TryGetComponent<PlayerController>(out var playerController))
+        {
+            playerController.enabled = false;
+        }
+
+        // 2. Hentikan kecepatan fisik agar langsung berhenti diam di tempat
+        if (TryGetComponent<Rigidbody2D>(out var rb))
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+
+        // 3. Putar animasi mati jika ada Animator
+        if (animator != null)
+        {
+            animator.Play(deathAnimationName);
+        }
+
+        // 4. Jalankan coroutine untuk memunculkan layar Game Over setelah animasi selesai
+        StartCoroutine(GameOverSequenceCoroutine());
+    }
+
+    private IEnumerator GameOverSequenceCoroutine()
+    {
+        // Tunggu 1.5 detik agar animasi kematian selesai diputar secara visual
+        yield return new WaitForSeconds(1.5f);
+
+        // Munculkan layar Game Over
+        if (menuController != null)
+        {
+            menuController.ShowGameOver();
+        }
+        else
+        {
+            Debug.LogWarning("GameplayMenuController tidak ditemukan! Tidak bisa memunculkan layar Game Over.");
+        }
     }
 }

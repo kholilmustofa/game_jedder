@@ -32,6 +32,9 @@ public class EnemyRanged : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private Slider healthBarSlider;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource attackAudioSource;
+
     private Transform playerTransform;
     private PlayerHealth playerHealth;
     private bool isAttacking = false;
@@ -170,6 +173,12 @@ public class EnemyRanged : MonoBehaviour
     {
         isAttacking = true;
         nextAttackTime = Time.time + attackCooldown;
+
+        // Putar suara tembakan jika AudioSource terpasang
+        if (attackAudioSource != null)
+        {
+            attackAudioSource.Play();
+        }
 
         // Putar animasi menyerang/menembak
         if (animator != null)

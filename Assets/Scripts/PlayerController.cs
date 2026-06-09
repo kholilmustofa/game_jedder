@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 0.3f;
     [SerializeField] private float facingMouseDuration = 0.5f; // Durasi MC menghadap kursor setelah menembak (detik)
+    [SerializeField] private int bulletDamage = 10;             // Damage dasar peluru MC
     [SerializeField] private AudioSource shootAudioSource;      // Tarik AudioSource suara tembak ke sini
     private float nextFireTime;
     private float lastShootTime = -99f;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector2 mousePos;
+    private string currentAnimationState;
 
     private void Awake()
     {
@@ -47,10 +49,28 @@ public class PlayerController : MonoBehaviour
         // Move the player
         rb.linearVelocity = moveInput * moveSpeed;
 
-        // Update animations
+        // Update animations using state machine
         if (animator != null)
         {
-            animator.SetFloat("Speed", moveInput.sqrMagnitude);
+            bool isMoving = moveInput.sqrMagnitude > 0.01f;
+            bool isShooting = Time.time - lastShootTime < facingMouseDuration;
+
+            if (isMoving && isShooting)
+            {
+                PlayAnimation("Player_RunAndShoot");
+            }
+            else if (isMoving && !isShooting)
+            {
+                PlayAnimation("Player_Walk");
+            }
+            else if (!isMoving && isShooting)
+            {
+                PlayAnimation("Player_Shoot");
+            }
+            else
+            {
+                PlayAnimation("Player_Idle");
+            }
         }
 
         // Handle Shooting Direction (Rotate FirePoint only)
@@ -101,13 +121,6 @@ public class PlayerController : MonoBehaviour
         if (Time.time >= nextFireTime)
         {
             Debug.Log("OnAttack triggered!");
-            
-            // Trigger the shooting animation
-            if (animator != null)
-            {
-                animator.SetTrigger("Shoot");
-            }
-
             Shoot();
             nextFireTime = Time.time + fireRate;
         }
@@ -126,11 +139,33 @@ public class PlayerController : MonoBehaviour
         if (bulletPrefab != null && firePoint != null)
         {
             Debug.Log("Shooting Bullet!");
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            if (bulletObj.TryGetComponent<Bullet>(out var bulletComponent))
+            {
+                bulletComponent.SetDamage(bulletDamage);
+            }
         }
         else
         {
             Debug.LogWarning("Bullet Prefab or FirePoint is missing in the Inspector!");
         }
+    }
+
+    /// <summary>
+    /// Fungsi publik untuk meningkatkan damage peluru Player secara permanen.
+    /// </summary>
+    public void UpgradeBulletDamage(int amount)
+    {
+        bulletDamage += amount;
+        Debug.Log($"Upgrade Bullet Damage! Damage baru: {bulletDamage}");
+    }
+
+    private void PlayAnimation(string newState)
+    {
+        if (animator == null) return;
+        if (currentAnimationState == newState) return;
+
+        animator.Play(newState);
+        currentAnimationState = newState;
     }
 }

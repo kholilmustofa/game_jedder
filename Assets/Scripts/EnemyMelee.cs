@@ -28,6 +28,9 @@ public class EnemyMelee : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private Slider healthBarSlider;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource attackAudioSource;
+
     private Transform playerTransform;
     private PlayerHealth playerHealth;
     private bool isAttacking = false;
@@ -148,6 +151,12 @@ public class EnemyMelee : MonoBehaviour
     {
         isAttacking = true;
         nextAttackTime = Time.time + attackCooldown;
+
+        // Putar suara tebasan/serangan jika AudioSource terpasang
+        if (attackAudioSource != null)
+        {
+            attackAudioSource.Play();
+        }
 
         // Putar animasi serang
         if (animator != null)

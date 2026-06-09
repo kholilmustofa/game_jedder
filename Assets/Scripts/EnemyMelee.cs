@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemyMelee : MonoBehaviour
 {
@@ -15,12 +16,20 @@ public class EnemyMelee : MonoBehaviour
     [Header("Combat Settings")]
     [SerializeField] private int attackDamage = 15;
     [SerializeField] private float attackCooldown = 1.5f; // Jeda waktu antar serangan
+    [SerializeField] private float delayBeforeDamage = 0.25f; // Jeda sebelum damage (sinkronisasi animasi)
+    [SerializeField] private float delayAfterDamage = 0.25f;  // Jeda setelah damage (selesai animasi)
     private float nextAttackTime;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    [Header("UI Settings")]
+    [SerializeField] private Slider healthBarSlider;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource attackAudioSource;
 
     private Transform playerTransform;
     private PlayerHealth playerHealth;
@@ -36,6 +45,12 @@ public class EnemyMelee : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+
+        if (healthBarSlider != null)
+        {
+            healthBarSlider.maxValue = maxHealth;
+            healthBarSlider.value = currentHealth;
+        }
 
         // Cari Player di awal game
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -137,14 +152,20 @@ public class EnemyMelee : MonoBehaviour
         isAttacking = true;
         nextAttackTime = Time.time + attackCooldown;
 
+        // Putar suara tebasan/serangan jika AudioSource terpasang
+        if (attackAudioSource != null)
+        {
+            attackAudioSource.Play();
+        }
+
         // Putar animasi serang
         if (animator != null)
         {
             animator.Play("Attack 1");
         }
 
-        // Tunggu sedikit agar damage terasa pas saat animasi pedang mengayun (seperempat detik)
-        yield return new WaitForSeconds(0.25f);
+        // Tunggu jeda sebelum damage agar visual pas saat senjata mengayun
+        yield return new WaitForSeconds(delayBeforeDamage);
 
         // Cek lagi apakah player masih dalam jarak serang saat hit terjadi
         if (playerTransform != null && Vector2.Distance(transform.position, playerTransform.position) <= attackRadius + 0.3f)
@@ -155,8 +176,15 @@ public class EnemyMelee : MonoBehaviour
             }
         }
 
-        // Tunggu hingga durasi animasi serang selesai (misal total 0.5 detik)
-        yield return new WaitForSeconds(0.25f);
+        // Tunggu sisa durasi animasi serang selesai sebelum musuh bisa jalan lagi
+        yield return new WaitForSeconds(delayAfterDamage);
+
+        // Kembalikan ke animasi Idle saat jeda cooldown
+        if (animator != null)
+        {
+            animator.Play("Idle");
+        }
+
         isAttacking = false;
     }
 
@@ -167,6 +195,11 @@ public class EnemyMelee : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} terkena serangan! Sisa HP: {currentHealth}");
+
+        if (healthBarSlider != null)
+        {
+            healthBarSlider.value = currentHealth;
+        }
 
         // Feedback visual: Kedip merah saat kena hit
         if (spriteRenderer != null)

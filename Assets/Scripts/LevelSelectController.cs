@@ -12,6 +12,11 @@ public class LevelSelectController : MonoBehaviour
     [SerializeField] private string level1SceneName = "Level1"; // Nama scene untuk Level 1
     [SerializeField] private string level2SceneName = "Level2"; // Nama scene untuk Level 2 (Boss)
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource clickAudioSource; // Tarik AudioSource suara klik ke sini
+
+    private string pendingSceneName;
+
     private void Start()
     {
         UpdateLevelSelectionUI();
@@ -45,8 +50,8 @@ public class LevelSelectController : MonoBehaviour
     /// </summary>
     public void LoadLevel1()
     {
-        Debug.Log("Memulai Level 1... Memuat scene: " + level1SceneName);
-        SceneManager.LoadScene(level1SceneName);
+        pendingSceneName = level1SceneName;
+        PlayClickSoundAndLoad();
     }
 
     /// <summary>
@@ -58,8 +63,8 @@ public class LevelSelectController : MonoBehaviour
         bool isLevel2Unlocked = PlayerPrefs.GetInt("Level2Unlocked", 0) == 1;
         if (isLevel2Unlocked)
         {
-            Debug.Log("Memulai Level 2 (Boss)... Memuat scene: " + level2SceneName);
-            SceneManager.LoadScene(level2SceneName);
+            pendingSceneName = level2SceneName;
+            PlayClickSoundAndLoad();
         }
         else
         {
@@ -72,7 +77,31 @@ public class LevelSelectController : MonoBehaviour
     /// </summary>
     public void BackToMainMenu(string mainMenuSceneName)
     {
-        SceneManager.LoadScene(mainMenuSceneName);
+        pendingSceneName = mainMenuSceneName;
+        PlayClickSoundAndLoad();
+    }
+
+    private void PlayClickSoundAndLoad()
+    {
+        if (clickAudioSource != null)
+        {
+            clickAudioSource.Play();
+            // Jeda 0.2 detik agar suara selesai berbunyi sebelum scene berganti
+            Invoke("LoadPendingScene", 0.2f);
+        }
+        else
+        {
+            LoadPendingScene();
+        }
+    }
+
+    private void LoadPendingScene()
+    {
+        if (!string.IsNullOrEmpty(pendingSceneName))
+        {
+            Debug.Log("Memuat scene: " + pendingSceneName);
+            SceneManager.LoadScene(pendingSceneName);
+        }
     }
 
     // Debug & Testing Tools

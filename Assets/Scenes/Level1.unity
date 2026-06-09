@@ -6582,7 +6582,7 @@ GameObject:
   - component: {fileID: 446785514}
   m_Layer: 0
   m_Name: Tower_0 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6939,7 +6939,7 @@ GameObject:
   - component: {fileID: 460079134}
   m_Layer: 0
   m_Name: Tower_0 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18421,7 +18421,7 @@ GameObject:
   - component: {fileID: 538050816}
   m_Layer: 0
   m_Name: Tower_0 (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19371,7 +19371,7 @@ GameObject:
   - component: {fileID: 586923864}
   m_Layer: 0
   m_Name: Barracks_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19678,7 +19678,7 @@ GameObject:
   - component: {fileID: 599599030}
   m_Layer: 0
   m_Name: Tower_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20003,11 +20003,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7472002744273116715, guid: 891b27a563c596e47a1b2ccd937ecac6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.114252
+      value: -10.505233
       objectReference: {fileID: 0}
     - target: {fileID: 7472002744273116715, guid: 891b27a563c596e47a1b2ccd937ecac6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.707153
+      value: 9.250388
       objectReference: {fileID: 0}
     - target: {fileID: 7472002744273116715, guid: 891b27a563c596e47a1b2ccd937ecac6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21538,11 +21538,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.71973
+      value: 6.5881605
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.7613
+      value: 10.395888
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24000,11 +24000,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.8969145
+      value: 5.6435404
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.228837
+      value: 11.929211
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24619,7 +24619,7 @@ GameObject:
   - component: {fileID: 863476837}
   m_Layer: 0
   m_Name: Monastery_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26112,7 +26112,7 @@ GameObject:
   - component: {fileID: 920753016}
   m_Layer: 0
   m_Name: Monastery_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26936,7 +26936,7 @@ GameObject:
   - component: {fileID: 953853407}
   m_Layer: 0
   m_Name: Archery_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38238,7 +38238,7 @@ GameObject:
   - component: {fileID: 1128267689}
   m_Layer: 0
   m_Name: House2_0 (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39978,7 +39978,7 @@ GameObject:
   - component: {fileID: 1204260110}
   m_Layer: 0
   m_Name: House2_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40185,7 +40185,7 @@ GameObject:
   - component: {fileID: 1208983638}
   m_Layer: 0
   m_Name: Archery_0 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42005,7 +42005,7 @@ GameObject:
   - component: {fileID: 1354464972}
   m_Layer: 0
   m_Name: Tower_0 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42613,7 +42613,7 @@ Transform:
   m_GameObject: {fileID: 1376837907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.637872, y: 6.3633494, z: 0}
+  m_LocalPosition: {x: -10.449088, y: -1.7153928, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46688,7 +46688,7 @@ GameObject:
   - component: {fileID: 1433689906}
   m_Layer: 0
   m_Name: Barracks_0 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51429,7 +51429,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 1, y: -11, z: 0}
@@ -51567,7 +51567,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 7, y: -11, z: 0}
@@ -51590,7 +51590,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 8, y: -11, z: 0}
@@ -52096,7 +52096,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -17, y: -8, z: 0}
@@ -52740,7 +52740,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 39, y: -1, z: 0}
@@ -52832,7 +52832,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 39, y: 1, z: 0}
@@ -52970,7 +52970,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 38, y: 3, z: 0}
@@ -53959,7 +53959,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 21, y: 22, z: 0}
@@ -55089,7 +55089,7 @@ GameObject:
   - component: {fileID: 1663159700}
   m_Layer: 0
   m_Name: House2_0 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59194,7 +59194,7 @@ GameObject:
   - component: {fileID: 1861259322}
   m_Layer: 0
   m_Name: Barracks_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61330,7 +61330,7 @@ GameObject:
   - component: {fileID: 1957043856}
   m_Layer: 0
   m_Name: House2_0 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62292,7 +62292,7 @@ GameObject:
   - component: {fileID: 1991368859}
   m_Layer: 0
   m_Name: House1_0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

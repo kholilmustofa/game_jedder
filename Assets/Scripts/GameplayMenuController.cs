@@ -15,14 +15,19 @@ public class GameplayMenuController : MonoBehaviour
     [SerializeField] private string levelSelectSceneName = "LevelSelect"; // Nama scene Level Select/Exit
 
     [Header("Audio Settings")]
-    [SerializeField] private AudioSource clickAudioSource; // Tarik AudioSource suara klik ke sini
-    [SerializeField] private AudioSource pauseSoundAudio;   // Tarik AudioSource suara jeda/resume ke sini (seperti suara tombol info)
+    [SerializeField] private AudioSource clickAudioSource;      // Tarik AudioSource suara klik ke sini
+    [SerializeField] private AudioSource pauseSoundAudio;        // Tarik AudioSource suara jeda/resume ke sini (seperti suara tombol info)
+    [SerializeField] private AudioSource backgroundMusic;       // Tarik AudioSource BGM Level utama ke sini (akan dihentikan saat kalah/menang)
+    [SerializeField] private AudioSource gameSuccessMusic;      // Tarik AudioSource suara kemenangan ke sini
+    [SerializeField] private AudioSource gameOverMusic;         // Tarik AudioSource suara kekalahan ke sini
 
     private string pendingSceneName;
     private int pendingSceneIndex = -1;
     private bool useIndexLoad = false;
     private bool shouldRestart = false;
     private bool isPaused = false;
+    private bool wasGameOverMusicPlayed = false;
+    private bool wasGameSuccessMusicPlayed = false;
 
     private void Start()
     {
@@ -155,10 +160,33 @@ public class GameplayMenuController : MonoBehaviour
     }
 
     /// <summary>
+    /// Memutar musik Game Over dan menghentikan BGM utama.
+    /// Dipanggil segera saat Player mulai mati agar lagu kegagalan berbunyi selama animasi kematian.
+    /// </summary>
+    public void PlayGameOverMusic()
+    {
+        if (wasGameOverMusicPlayed) return;
+
+        if (backgroundMusic != null && backgroundMusic.isPlaying)
+        {
+            backgroundMusic.Stop();
+        }
+
+        if (gameOverMusic != null)
+        {
+            gameOverMusic.Play();
+            wasGameOverMusicPlayed = true;
+        }
+    }
+
+    /// <summary>
     /// Menampilkan panel Game Over dan menjeda game.
     /// </summary>
     public void ShowGameOver()
     {
+        // Pastikan BGM berhenti dan musik game over berputar
+        PlayGameOverMusic();
+
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
@@ -177,6 +205,21 @@ public class GameplayMenuController : MonoBehaviour
     /// </summary>
     public void ShowGameSuccess()
     {
+        if (wasGameSuccessMusicPlayed) return;
+
+        // Hentikan BGM utama jika ada
+        if (backgroundMusic != null && backgroundMusic.isPlaying)
+        {
+            backgroundMusic.Stop();
+        }
+
+        // Putar musik Game Success jika ada
+        if (gameSuccessMusic != null)
+        {
+            gameSuccessMusic.Play();
+            wasGameSuccessMusicPlayed = true;
+        }
+
         if (gameSuccessPanel != null)
         {
             gameSuccessPanel.SetActive(true);

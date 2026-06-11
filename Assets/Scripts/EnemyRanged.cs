@@ -174,12 +174,6 @@ public class EnemyRanged : MonoBehaviour
         isAttacking = true;
         nextAttackTime = Time.time + attackCooldown;
 
-        // Putar suara tembakan jika AudioSource terpasang
-        if (attackAudioSource != null)
-        {
-            attackAudioSource.Play();
-        }
-
         // Putar animasi menyerang/menembak
         if (animator != null)
         {
@@ -188,6 +182,12 @@ public class EnemyRanged : MonoBehaviour
 
         // Tunggu jeda sebelum anak panah keluar agar pas dengan visual animasi menarik busur
         yield return new WaitForSeconds(delayBeforeShoot);
+
+        // Putar suara tembakan jika AudioSource terpasang (suara panah meluncur)
+        if (attackAudioSource != null)
+        {
+            attackAudioSource.Play();
+        }
 
         // Tembakkan anak panah
         if (arrowPrefab != null && firePoint != null && playerTransform != null)

@@ -157,7 +157,13 @@ public class PlayerHealth : MonoBehaviour
             animator.Play(deathAnimationName);
         }
 
-        // 4. Jalankan coroutine untuk memunculkan layar Game Over setelah animasi selesai
+        // 4. Putar musik Game Over segera saat animasi mati dimulai (agar tidak telat)
+        if (menuController != null)
+        {
+            menuController.PlayGameOverMusic();
+        }
+
+        // 5. Jalankan coroutine untuk memunculkan layar Game Over setelah animasi selesai
         StartCoroutine(GameOverSequenceCoroutine());
     }
 

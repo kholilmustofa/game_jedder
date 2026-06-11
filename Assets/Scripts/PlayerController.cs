@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
         {
             bool isMoving = moveInput.sqrMagnitude > 0.01f;
-            bool isShooting = Time.time - lastShootTime < facingMouseDuration;
+            bool isShooting = (lastShootTime >= 0f) && (Time.time - lastShootTime < facingMouseDuration);
 
             if (isMoving && isShooting)
             {
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         if (spriteRenderer != null)
         {
             // 1. Jika baru saja menembak, arahkan tubuh MC mengikuti arah kursor mouse (membidik)
-            if (Time.time - lastShootTime < facingMouseDuration)
+            if ((lastShootTime >= 0f) && (Time.time - lastShootTime < facingMouseDuration))
             {
                 if (mousePos.x < transform.position.x)
                 {
@@ -118,7 +118,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-        if (Time.time >= nextFireTime)
+        // Pastikan menembak hanya saat tombol ditekan (bukan saat dilepas)
+        if (value.isPressed && Time.time >= nextFireTime)
         {
             Debug.Log("OnAttack triggered!");
             Shoot();

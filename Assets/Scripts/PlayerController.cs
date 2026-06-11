@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 mousePos;
     private string currentAnimationState;
+    private bool isAttackPressed = false;
 
     private void Awake()
     {
@@ -41,6 +42,9 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
             mousePos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
+
+            // Update secara real-time apakah klik kiri mouse sedang ditekan
+            isAttackPressed = Mouse.current.leftButton.isPressed;
         }
     }
 
@@ -84,8 +88,8 @@ public class PlayerController : MonoBehaviour
         // Logika Menghadap (Flipping Sprite):
         if (spriteRenderer != null)
         {
-            // 1. Jika baru saja menembak, arahkan tubuh MC mengikuti arah kursor mouse (membidik)
-            if ((lastShootTime >= 0f) && (Time.time - lastShootTime < facingMouseDuration))
+            // 1. Jika sedang menekan tombol tembak, arahkan tubuh MC mengikuti arah kursor mouse (membidik)
+            if (isAttackPressed)
             {
                 if (mousePos.x < transform.position.x)
                 {
@@ -96,7 +100,12 @@ public class PlayerController : MonoBehaviour
                     spriteRenderer.flipX = false; // Hadap kanan ke arah mouse
                 }
             }
-            // 2. Jika sedang tidak menembak, arahkan tubuh MC sesuai arah jalan (WASD)
+            // 2. Jika baru saja melepas tembakan (dalam 0.35 detik), KUNCI arah hadap terakhir (jangan ikuti mouse dan jangan balik dulu)
+            else if ((lastShootTime >= 0f) && (Time.time - lastShootTime < 0.35f))
+            {
+                // Biarkan flipX tetap seperti saat terakhir menembak (mencegah flickering saat klik cepat)
+            }
+            // 3. Jika sedang tidak menembak/membidik, arahkan tubuh MC sesuai arah jalan (WASD)
             else if (moveInput.x != 0)
             {
                 if (moveInput.x < 0)

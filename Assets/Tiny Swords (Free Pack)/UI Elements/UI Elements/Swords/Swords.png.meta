@@ -410,10 +410,10 @@ TextureImporter:
       name: Swords_12
       rect:
         serializedVersion: 2
-        x: 25
-        y: 1
+        x: 21
+        y: 171
         width: 126
-        height: 254
+        height: 85
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -450,6 +450,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Swords_14
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 105
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b82a93709380bbb4f905e6cf75974de7
+      internalID: 303941114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -470,6 +492,7 @@ TextureImporter:
       Swords_11: 562804009
       Swords_12: -471362873
       Swords_13: 1044576144
+      Swords_14: 303941114
       Swords_2: 4978276593797209138
       Swords_3: -9004990608046106943
       Swords_4: 8289387723579576647

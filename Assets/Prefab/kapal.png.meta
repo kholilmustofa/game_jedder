@@ -1,49 +1,52 @@
 fileFormatVersion: 2
-guid: 8c3a70bcaac78104fbaa17e3da9e7418
+guid: 86351e349f811d845a5c5ddc7c7353d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4099601479870733829
-    second: Ribbon_Black_0
+      213: -4956055226572561361
+    second: kapal_0
   - first:
-      213: -5920853941824831045
-    second: Ribbon_Black_1
+      213: -4151842278805520650
+    second: kapal_1
   - first:
-      213: -8188626452152232112
-    second: Ribbon_Black_2
+      213: -7113902455721205156
+    second: kapal_2
   - first:
-      213: 1094627373922928312
-    second: Ribbon_Black_3
+      213: -505286027946607987
+    second: kapal_3
   - first:
-      213: 6734415938317262346
-    second: Ribbon_Black_4
+      213: 5588715701969872928
+    second: kapal_4
   - first:
-      213: -219032936139802965
-    second: Ribbon_Black_5
+      213: 4324576604781616070
+    second: kapal_5
   - first:
-      213: -8239746300463774091
-    second: Ribbon_Black_6
+      213: 1410348244693541633
+    second: kapal_6
   - first:
-      213: -4934413683262000448
-    second: Ribbon_Black_7
+      213: -3358363637991228905
+    second: kapal_7
   - first:
-      213: -5275320898006849283
-    second: Ribbon_Black_8
+      213: -1412306831746955596
+    second: kapal_8
   - first:
-      213: 761733829122497899
-    second: Ribbon_Black_9
+      213: 3832556593224548936
+    second: kapal_9
   - first:
-      213: 6105018246882013097
-    second: Ribbon_Black_10
+      213: 1715542116167417656
+    second: kapal_10
   - first:
-      213: 8781261355498743455
-    second: Ribbon_Black_11
+      213: -4011376300041131296
+    second: kapal_11
   - first:
-      213: -2922449803513381396
-    second: Ribbon_Black_12
+      213: -7108863609974478031
+    second: kapal_12
   - first:
-      213: 7041010778729579631
-    second: Ribbon_Black_13
+      213: 9217287699011864566
+    second: kapal_13
+  - first:
+      213: -2676106776330958393
+    second: kapal_14
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -90,7 +93,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -152,13 +155,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ribbon_Black_0
+      name: kapal_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 455
-        width: 99
-        height: 100
+        x: 44
+        y: 887
+        width: 379
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +170,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 50e5c5843d5b4e830800000000000000
-      internalID: 4099601479870733829
+      spriteID: f24acec970e883bb0800000000000000
+      internalID: -4956055226572561361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_1
+      name: kapal_1
       rect:
         serializedVersion: 2
-        x: 193
-        y: 464
-        width: 60
-        height: 91
+        x: 81
+        y: 972
+        width: 7
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb14f8eb5b6e4dda0800000000000000
-      internalID: -5920853941824831045
+      spriteID: 6fe3950e171b166c0800000000000000
+      internalID: -4151842278805520650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_2
+      name: kapal_2
       rect:
         serializedVersion: 2
-        x: 319
-        y: 455
-        width: 99
-        height: 100
+        x: 81
+        y: 707
+        width: 8
+        height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 057591180a72c5e80800000000000000
-      internalID: -8188626452152232112
+      spriteID: c5265f75867564d90800000000000000
+      internalID: -7113902455721205156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_3
+      name: kapal_3
       rect:
         serializedVersion: 2
-        x: 515
-        y: 404
-        width: 190
-        height: 172
+        x: 82
+        y: 807
+        width: 7
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b648180cc5e03f00800000000000000
-      internalID: 1094627373922928312
+      spriteID: d8a3642e80ddcf8f0800000000000000
+      internalID: -505286027946607987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_4
+      name: kapal_4
       rect:
         serializedVersion: 2
-        x: 767
-        y: 404
-        width: 174
-        height: 172
+        x: 83
+        y: 735
+        width: 6
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a0e112d8d93757d50800000000000000
-      internalID: 6734415938317262346
+      spriteID: 028ef86125b1f8d40800000000000000
+      internalID: 5588715701969872928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_5
+      name: kapal_5
       rect:
         serializedVersion: 2
-        x: 50
-        y: 319
-        width: 143
-        height: 108
+        x: 99
+        y: 375
+        width: 303
+        height: 276
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,20 +280,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba6b64f74b6d5fcf0800000000000000
-      internalID: -219032936139802965
+      spriteID: 6cb19fb628bf30c30800000000000000
+      internalID: 4324576604781616070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_6
+      name: kapal_6
       rect:
         serializedVersion: 2
-        x: 255
-        y: 319
-        width: 143
-        height: 108
+        x: 459
+        y: 371
+        width: 298
+        height: 285
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,20 +302,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5768481556a86ad80800000000000000
-      internalID: -8239746300463774091
+      spriteID: 103ed869140929310800000000000000
+      internalID: 1410348244693541633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_7
+      name: kapal_7
       rect:
         serializedVersion: 2
-        x: 515
-        y: 209
-        width: 190
-        height: 176
+        x: 789
+        y: 371
+        width: 305
+        height: 278
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,20 +324,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c2775216e0758bb0800000000000000
-      internalID: -4934413683262000448
+      spriteID: 71ab1fa8012b461d0800000000000000
+      internalID: -3358363637991228905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_8
+      name: kapal_8
       rect:
         serializedVersion: 2
-        x: 767
-        y: 209
-        width: 174
-        height: 176
+        x: 1157
+        y: 371
+        width: 292
+        height: 284
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -343,20 +346,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df86b16d79b4ac6b0800000000000000
-      internalID: -5275320898006849283
+      spriteID: 4b68dd35b6a766ce0800000000000000
+      internalID: -1412306831746955596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_9
+      name: kapal_9
       rect:
         serializedVersion: 2
-        x: 50
-        y: 145
-        width: 143
-        height: 112
+        x: 994
+        y: 200
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,20 +368,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b6d9e3ab1e8329a00800000000000000
-      internalID: 761733829122497899
+      spriteID: 8420bb07ae9ff2530800000000000000
+      internalID: 3832556593224548936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_10
+      name: kapal_10
       rect:
         serializedVersion: 2
-        x: 255
-        y: 145
-        width: 143
-        height: 112
+        x: 994
+        y: 24
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -387,20 +390,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9af2ea0ffb169b450800000000000000
-      internalID: 6105018246882013097
+      spriteID: 83f716f1774dec710800000000000000
+      internalID: 1715542116167417656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_11
+      name: kapal_11
       rect:
         serializedVersion: 2
-        x: 515
-        y: 0
-        width: 190
-        height: 171
+        x: 995
+        y: 672
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,20 +412,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f962e5e7dae4dd970800000000000000
-      internalID: 8781261355498743455
+      spriteID: 0eaa0af128ab458c0800000000000000
+      internalID: -4011376300041131296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_12
+      name: kapal_12
       rect:
         serializedVersion: 2
-        x: 767
-        y: 0
-        width: 174
-        height: 171
+        x: 995
+        y: 147
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,20 +434,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cedbca3336f5177d0800000000000000
-      internalID: -2922449803513381396
+      spriteID: 13b25ca063e385d90800000000000000
+      internalID: -7108863609974478031
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ribbon_Black_13
+      name: kapal_13
       rect:
         serializedVersion: 2
-        x: 50
-        y: 20
-        width: 92
-        height: 109
+        x: 1041
+        y: 39
+        width: 6
+        height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -453,8 +456,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f648fd59ff1b6b160800000000000000
-      internalID: 7041010778729579631
+      spriteID: 6f70e24b3526aef70800000000000000
+      internalID: 9217287699011864566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kapal_14
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 8
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c907c7c01f8cdad0800000000000000
+      internalID: -2676106776330958393
       vertices: []
       indices: 
       edges: []
@@ -463,7 +488,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c72c64ac6a3c50b4ea5c7d7d2ddf17bb
+    spriteID: ad12bf068a3899743b4cfc595a49b61d
     internalID: 0
     vertices: []
     indices: 
@@ -473,20 +498,21 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ribbon_Black_0: 4099601479870733829
-      Ribbon_Black_1: -5920853941824831045
-      Ribbon_Black_10: 6105018246882013097
-      Ribbon_Black_11: 8781261355498743455
-      Ribbon_Black_12: -2922449803513381396
-      Ribbon_Black_13: 7041010778729579631
-      Ribbon_Black_2: -8188626452152232112
-      Ribbon_Black_3: 1094627373922928312
-      Ribbon_Black_4: 6734415938317262346
-      Ribbon_Black_5: -219032936139802965
-      Ribbon_Black_6: -8239746300463774091
-      Ribbon_Black_7: -4934413683262000448
-      Ribbon_Black_8: -5275320898006849283
-      Ribbon_Black_9: 761733829122497899
+      kapal_0: -4956055226572561361
+      kapal_1: -4151842278805520650
+      kapal_10: 1715542116167417656
+      kapal_11: -4011376300041131296
+      kapal_12: -7108863609974478031
+      kapal_13: 9217287699011864566
+      kapal_14: -2676106776330958393
+      kapal_2: -7113902455721205156
+      kapal_3: -505286027946607987
+      kapal_4: 5588715701969872928
+      kapal_5: 4324576604781616070
+      kapal_6: 1410348244693541633
+      kapal_7: -3358363637991228905
+      kapal_8: -1412306831746955596
+      kapal_9: 3832556593224548936
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

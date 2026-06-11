@@ -8,6 +8,9 @@ public class GameplayMenuController : MonoBehaviour
     [SerializeField] private GameObject pauseMenuPanel;   // Tarik Panel Pause/Pengaturan ke sini
     [SerializeField] private GameObject gameOverPanel;    // Tarik Panel Game Over ke sini
     [SerializeField] private GameObject gameSuccessPanel; // Tarik Panel Game Success ke sini
+    [SerializeField] private GameObject missionPopupPanel; // Tarik Panel Misi ke sini
+    [SerializeField] private Animator missionPopupAnimator; // Tarik Animator Panel Misi ke sini (opsional)
+    [SerializeField] private float missionCloseAnimDuration = 0.3f; // Durasi animasi keluar (detik)
     [SerializeField] private CursorManager cursorManager;     // Tarik objek CursorManager ke sini
 
     [Header("Scene Settings")]
@@ -28,6 +31,7 @@ public class GameplayMenuController : MonoBehaviour
     private bool isPaused = false;
     private bool wasGameOverMusicPlayed = false;
     private bool wasGameSuccessMusicPlayed = false;
+    private bool isClosingMission = false;
 
     private void Start()
     {
@@ -46,14 +50,61 @@ public class GameplayMenuController : MonoBehaviour
         {
             gameSuccessPanel.SetActive(false);
         }
+
+        // Tampilkan panel misi di awal permainan jika dipasang
+        if (missionPopupPanel != null)
+        {
+            missionPopupPanel.SetActive(true);
+            isPaused = true;
+            StartCoroutine(StartMissionRoutine());
+        }
+    }
+
+    private System.Collections.IEnumerator StartMissionRoutine()
+    {
+        // Tunggu 1 frame agar Animator selesai inisialisasi saat Time.timeScale masih 1,
+        // dan memastikan CursorManager.Start() sudah selesai dijalankan.
+        yield return null;
+
+        Time.timeScale = 0f;
+
+        if (missionPopupAnimator != null)
+        {
+            Debug.Log("DEBUG: Memulai animasi Open pada unscaled time.");
+            missionPopupAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            missionPopupAnimator.Play("MissionPopup_Open", 0, 0f);
+        }
+        else
+        {
+            Debug.LogWarning("DEBUG WARNING: Mission popup animator BELUM dipasang di Inspector!");
+        }
+
+        if (cursorManager != null)
+        {
+            cursorManager.SetMenuCursor();
+        }
     }
 
     private void Update()
     {
+        // Jika game over atau game success sedang aktif, jangan tanggapi tombol ESC
+        if ((gameOverPanel != null && gameOverPanel.activeSelf) || 
+            (gameSuccessPanel != null && gameSuccessPanel.activeSelf))
+        {
+            return;
+        }
+
         // Deteksi tombol ESC menggunakan New Input System
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            TogglePause();
+            if (missionPopupPanel != null && missionPopupPanel.activeSelf)
+            {
+                CloseMissionPopup();
+            }
+            else
+            {
+                TogglePause();
+            }
         }
     }
 
@@ -120,6 +171,55 @@ public class GameplayMenuController : MonoBehaviour
         if (cursorManager != null)
         {
             cursorManager.SetGameplayCursor(); // Gunakan kursor bidikan saat bermain kembali
+        }
+    }
+
+    /// <summary>
+    /// Menutup panel misi, memutar suara klik, memicu animasi keluar (jika ada),
+    /// melanjutkan game, dan mengganti kursor ke gameplay.
+    /// </summary>
+    public void CloseMissionPopup()
+    {
+        if (isClosingMission) return;
+
+        if (clickAudioSource != null)
+        {
+            clickAudioSource.Play();
+        }
+
+        if (missionPopupAnimator != null)
+        {
+            isClosingMission = true;
+            missionPopupAnimator.SetTrigger("Close");
+            StartCoroutine(CloseMissionRoutine());
+        }
+        else
+        {
+            ExecuteCloseMissionPopup();
+        }
+    }
+
+    private System.Collections.IEnumerator CloseMissionRoutine()
+    {
+        // Tunggu menggunakan real-time agar tidak terpengaruh oleh Time.timeScale = 0
+        yield return new WaitForSecondsRealtime(missionCloseAnimDuration);
+        ExecuteCloseMissionPopup();
+    }
+
+    private void ExecuteCloseMissionPopup()
+    {
+        if (missionPopupPanel != null)
+        {
+            missionPopupPanel.SetActive(false);
+        }
+
+        isPaused = false;
+        Time.timeScale = 1f;
+        isClosingMission = false;
+
+        if (cursorManager != null)
+        {
+            cursorManager.SetGameplayCursor();
         }
     }
 

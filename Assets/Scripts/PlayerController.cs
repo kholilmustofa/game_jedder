@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float facingMouseDuration = 0.5f; // Durasi MC menghadap kursor setelah menembak (detik)
     [SerializeField] private int bulletDamage = 10;             // Damage dasar peluru MC
     [SerializeField] private AudioSource shootAudioSource;      // Tarik AudioSource suara tembak ke sini
+    [SerializeField] private GameObject spawnEffectPrefab;       // Tarik prefab efek debu (dust) ke sini
+    [SerializeField] private Vector3 spawnOffset = Vector3.zero; // Offset posisi muncul efek debu
     private float nextFireTime;
     private float lastShootTime = -99f;
 
@@ -33,6 +35,14 @@ public class PlayerController : MonoBehaviour
         if (mainCamera == null) mainCamera = Camera.main;
         if (animator == null) animator = GetComponent<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        if (spawnEffectPrefab != null)
+        {
+            Instantiate(spawnEffectPrefab, transform.position + spawnOffset, Quaternion.identity);
+        }
     }
 
     private void Update()
@@ -127,6 +137,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
+        // Cegah menembak saat game sedang dijeda
+        if (Mathf.Approximately(Time.timeScale, 0f)) return;
+
         // Pastikan menembak hanya saat tombol ditekan (bukan saat dilepas)
         if (value.isPressed && Time.time >= nextFireTime)
         {

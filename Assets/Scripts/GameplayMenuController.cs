@@ -6,6 +6,8 @@ public class GameplayMenuController : MonoBehaviour
 {
     [Header("UI Panels")]
     [SerializeField] private GameObject pauseMenuPanel;   // Tarik Panel Pause/Pengaturan ke sini
+    [SerializeField] private Animator pauseMenuAnimator;   // Tarik Animator Panel Pause ke sini (opsional)
+    [SerializeField] private float pauseCloseAnimDuration = 0.3f; // Durasi animasi keluar pause (detik)
     [SerializeField] private GameObject gameOverPanel;    // Tarik Panel Game Over ke sini
     [SerializeField] private GameObject gameSuccessPanel; // Tarik Panel Game Success ke sini
     [SerializeField] private GameObject missionPopupPanel; // Tarik Panel Misi ke sini
@@ -32,6 +34,7 @@ public class GameplayMenuController : MonoBehaviour
     private bool wasGameOverMusicPlayed = false;
     private bool wasGameSuccessMusicPlayed = false;
     private bool isClosingMission = false;
+    private bool isResuming = false;
 
     private void Start()
     {
@@ -154,14 +157,35 @@ public class GameplayMenuController : MonoBehaviour
     /// </summary>
     public void ResumeGame()
     {
-        isPaused = false;
-        Time.timeScale = 1f; // Kembalikan aliran waktu game ke normal
-        
-        // Putar suara resume menggunakan suara tombol biasa (clickAudioSource)
+        if (isResuming) return;
+
         if (clickAudioSource != null)
         {
             clickAudioSource.Play();
         }
+
+        if (pauseMenuAnimator != null)
+        {
+            isResuming = true;
+            pauseMenuAnimator.SetTrigger("Close");
+            StartCoroutine(ResumeGameRoutine());
+        }
+        else
+        {
+            ExecuteResumeGame();
+        }
+    }
+
+    private System.Collections.IEnumerator ResumeGameRoutine()
+    {
+        yield return new WaitForSecondsRealtime(pauseCloseAnimDuration);
+        ExecuteResumeGame();
+    }
+
+    private void ExecuteResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f; // Kembalikan aliran waktu game ke normal
 
         if (pauseMenuPanel != null)
         {
@@ -172,6 +196,8 @@ public class GameplayMenuController : MonoBehaviour
         {
             cursorManager.SetGameplayCursor(); // Gunakan kursor bidikan saat bermain kembali
         }
+
+        isResuming = false;
     }
 
     /// <summary>

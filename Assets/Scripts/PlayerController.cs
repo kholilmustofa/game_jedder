@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    [Header("Drowning Settings")]
+    [SerializeField] private GameObject waterSplashPrefab; // Tarik prefab WaterSplash ke sini
+    [SerializeField] private Vector3 waterSplashOffset = Vector3.zero; // Offset posisi cipratan air
+    private bool isDrowning = false;
+
     private Vector2 moveInput;
     private Vector2 mousePos;
     private string currentAnimationState;
@@ -43,6 +49,19 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(spawnEffectPrefab, transform.position + spawnOffset, Quaternion.identity);
         }
+
+        // Tentukan nilai damage berdasarkan scene saat ini
+        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (sceneName == "Level1")
+        {
+            // Reset ke damage dasar (10) saat memulai ulang dari Level 1
+            PlayerPrefs.SetInt("PlayerDamage", 10);
+            PlayerPrefs.Save();
+        }
+
+        // Load damage dari PlayerPrefs (default: 10)
+        bulletDamage = PlayerPrefs.GetInt("PlayerDamage", 10);
+        Debug.Log($"[PlayerController] Damage peluru saat ini: {bulletDamage}");
     }
 
     private void Update()
@@ -180,7 +199,9 @@ public class PlayerController : MonoBehaviour
     public void UpgradeBulletDamage(int amount)
     {
         bulletDamage += amount;
-        Debug.Log($"Upgrade Bullet Damage! Damage baru: {bulletDamage}");
+        PlayerPrefs.SetInt("PlayerDamage", bulletDamage);
+        PlayerPrefs.Save();
+        Debug.Log($"Upgrade Bullet Damage! Damage baru: {bulletDamage} (Tersimpan ke PlayerPrefs)");
     }
 
     private void PlayAnimation(string newState)
@@ -190,5 +211,60 @@ public class PlayerController : MonoBehaviour
 
         animator.Play(newState);
         currentAnimationState = newState;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Deteksi jika menyentuh air (Tilemap / trigger ber-tag "Water")
+        if (collision.CompareTag("Water") && !isDrowning)
+        {
+            StartCoroutine(DrownSequence());
+        }
+    }
+
+    private IEnumerator DrownSequence()
+    {
+        isDrowning = true;
+
+        // 1. Hentikan kecepatan fisik player secara instan
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+
+        // 2. Matikan kontrol pergerakan player
+        this.enabled = false;
+
+        // 3. Sembunyikan sprite MC agar terkesan tenggelam masuk ke dalam air
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = false;
+        }
+
+        // 4. Instansiasi efek cipratan air (WaterSplash) di posisi player dengan offset
+        if (waterSplashPrefab != null)
+        {
+            Vector3 spawnPosition = transform.position + waterSplashOffset;
+            GameObject splash = Instantiate(waterSplashPrefab, spawnPosition, Quaternion.identity);
+            // Hancurkan efek setelah animasi selesai (1.2 detik)
+            Destroy(splash, 1.2f);
+            Debug.Log($"DEBUG: Efek WaterSplash dimunculkan di posisi: {spawnPosition}");
+        }
+        else
+        {
+            Debug.LogWarning("DEBUG WARNING: Prefab WaterSplash belum dipasang di PlayerController!");
+        }
+
+        // 5. Hubungi PlayerHealth untuk mematikan player (Game Over)
+        if (TryGetComponent<PlayerHealth>(out var playerHealth))
+        {
+            playerHealth.TakeDamage(999); // Berikan damage besar agar mati instan
+        }
+        else
+        {
+            Debug.LogWarning("PlayerHealth tidak ditemukan pada Player!");
+        }
+
+        yield return null;
     }
 }

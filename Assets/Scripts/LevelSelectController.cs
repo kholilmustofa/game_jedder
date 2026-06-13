@@ -11,6 +11,7 @@ public class LevelSelectController : MonoBehaviour
     [Header("Scene Names")]
     [SerializeField] private string level1SceneName = "Level1"; // Nama scene untuk Level 1
     [SerializeField] private string level2SceneName = "Level2"; // Nama scene untuk Level 2 (Boss)
+    [SerializeField] private string lobbySceneName = "lobby";   // Nama scene untuk Lobby/Menu Utama
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource clickAudioSource; // Tarik AudioSource suara klik ke sini
@@ -78,6 +79,15 @@ public class LevelSelectController : MonoBehaviour
     public void BackToMainMenu(string mainMenuSceneName)
     {
         pendingSceneName = mainMenuSceneName;
+        PlayClickSoundAndLoad();
+    }
+
+    /// <summary>
+    /// Fungsi yang dipanggil untuk kembali ke scene Lobby/Menu Utama.
+    /// </summary>
+    public void GoToLobby()
+    {
+        pendingSceneName = lobbySceneName;
         PlayClickSoundAndLoad();
     }
 

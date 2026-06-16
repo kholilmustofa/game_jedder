@@ -60,6 +60,7 @@ public class BossController : MonoBehaviour
     private Transform playerTransform;
     private PlayerHealth playerHealth;
     private Color originalSpriteColor = Color.white;
+    private string currentAnimationState;
 
     private void Awake()
     {
@@ -108,7 +109,7 @@ public class BossController : MonoBehaviour
         if (playerHealth.IsDead)
         {
             rb.linearVelocity = Vector2.zero;
-            if (animator != null) animator.Play(idleAnimationName);
+            PlayAnimation(idleAnimationName);
             return;
         }
 
@@ -134,7 +135,7 @@ public class BossController : MonoBehaviour
             }
             else
             {
-                if (animator != null) animator.Play(idleAnimationName);
+                PlayAnimation(idleAnimationName);
             }
         }
         else if (distanceToPlayer <= chaseRadius)
@@ -146,7 +147,7 @@ public class BossController : MonoBehaviour
         {
             // Di luar jarak kejar: Diam
             rb.linearVelocity = Vector2.zero;
-            if (animator != null) animator.Play(idleAnimationName);
+            PlayAnimation(idleAnimationName);
         }
     }
 
@@ -184,10 +185,7 @@ public class BossController : MonoBehaviour
                 spriteRenderer.flipX = false;
         }
 
-        if (animator != null)
-        {
-            animator.Play(walkAnimationName);
-        }
+        PlayAnimation(walkAnimationName);
     }
 
     private IEnumerator AttackCoroutine()
@@ -207,10 +205,7 @@ public class BossController : MonoBehaviour
             attackAudioSource.Play();
         }
 
-        if (animator != null)
-        {
-            animator.Play(attackAnimationName);
-        }
+        PlayAnimation(attackAnimationName);
 
         // Tunggu hingga hantaman visual animasi terjadi
         yield return new WaitForSeconds(delayBeforeDamage);
@@ -233,9 +228,9 @@ public class BossController : MonoBehaviour
         // Tunggu sisa animasi selesai
         yield return new WaitForSeconds(delayAfterDamage);
 
-        if (animator != null && !isDead)
+        if (!isDead)
         {
-            animator.Play(idleAnimationName);
+            PlayAnimation(idleAnimationName);
         }
 
         isAttacking = false;
@@ -334,10 +329,7 @@ public class BossController : MonoBehaviour
             deathAudioSource.Play();
         }
 
-        if (animator != null)
-        {
-            animator.Play(deathAnimationName);
-        }
+        PlayAnimation(deathAnimationName);
 
         Debug.Log("BOSS DIKALAHKAN!");
 
@@ -354,6 +346,15 @@ public class BossController : MonoBehaviour
 
         // Hancurkan objek Boss setelah animasi selesai
         Destroy(gameObject, victoryDelay + 1f);
+    }
+
+    private void PlayAnimation(string newState)
+    {
+        if (animator == null) return;
+        if (currentAnimationState == newState) return;
+
+        animator.Play(newState);
+        currentAnimationState = newState;
     }
 
     private IEnumerator VictorySequenceCoroutine()

@@ -69,6 +69,14 @@ public class EnemyRanged : MonoBehaviour
     {
         if (playerTransform == null || playerHealth == null) return;
 
+        // Jika Player sudah mati, musuh berhenti menyerang dan diam (Idle)
+        if (playerHealth.IsDead)
+        {
+            rb.linearVelocity = Vector2.zero;
+            if (animator != null) animator.Play("Idle");
+            return;
+        }
+
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
         // Abaikan gerakan jika sedang dalam animasi menyerang/menembak

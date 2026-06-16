@@ -22,13 +22,20 @@ Peti rahasia membutuhkan batas fisik (agar tidak ditembus Player) dan area detek
 ## 🧠 Langkah 2: Memasang Script `SecretChest`
 1. Pilih objek **`chest`** di Hierarchy.
 2. Klik **Add Component** -> pasang script **`SecretChest`**.
-3. Di panel Inspector pada script **`Secret Chest`**, isi kolom-kolomnya sebagai berikut:
-   * **Damage Upgrade Amount:** Jumlah peningkatan damage (contoh: **`5`**).
+3. Di panel Inspector pada script **`Secret Chest`**, konfigurasi pengaturannya sesuai kebutuhan level:
+   * **Chest Type**: Pilih tipe fungsi peti yang diinginkan:
+     * **`Damage Upgrade`** (Cocok untuk Level 1): Meningkatkan damage peluru player.
+     * **`Health Upgrade`** (Cocok untuk Level 2): Meningkatkan Max HP menjadi 150 dan memulihkan HP secara penuh.
+   * **Damage Upgrade Amount:** Jumlah peningkatan damage (jika memilih tipe *Damage Upgrade*, isi misalnya: **`5`**).
+   * **New Max Health Amount:** Batas HP maksimal baru player (jika memilih tipe *Health Upgrade*, isi misalnya: **`150`**).
    * **Animator:** Tarik komponen **Animator** dari objek chest itu sendiri ke kolom ini.
    * **Open Sound Audio:** (Opsional) Pasang komponen **Audio Source** pada chest, isi dengan file suara peti terbuka, lalu matikan *Play On Awake*, dan tarik Audio Source tersebut ke kolom ini.
    * **VFX Settings:**
-     * **Upgrade Effect Prefab:** Tarik prefab efek visual upgrade pedang merah yang sudah Anda buat di Langkah 4 ke kolom ini.
-     * **Spawn Effect On Player:** Centang pilihan ini agar efek visual upgrade muncul tepat mengelilingi tubuh karakter Player (jika tidak dicentang, efek akan muncul di peti).
+     * **Upgrade Effect Prefab:** Tarik prefab efek visual ke kolom ini. 
+       * Di **Level 1**, pasang prefab pedang merah **`VFX_AttackUp`**.
+       * Di **Level 2**, pasang prefab pemulihan hijau **`HealEffect`**.
+     * **Effect Offset**: Mengatur pergeseran koordinat posisi efek visual. Jika efek muncul terlalu rendah atau kurang pas dengan karakter, Anda bisa menaikkannya dengan mengubah nilai **`Y`** (misalnya diisi **`1`** atau **`1.5`**).
+     * **Spawn Effect On Player:** Centang pilihan ini agar efek visual upgrade muncul tepat mengelilingi tubuh karakter Player.
      * **Effect Destroy Delay:** Waktu tunggu sebelum objek efek dihancurkan (misal: **`1.5`** detik).
 
 ---

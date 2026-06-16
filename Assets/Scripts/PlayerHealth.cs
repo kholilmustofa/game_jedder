@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
+    public bool IsDead => currentHealth <= 0;
 
     [Header("Invincibility Frame (iFrame)")]
     [SerializeField] private float invincibilityDuration = 1f; // Kebal selama 1 detik setelah kena hit
@@ -65,7 +66,11 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         // Abaikan damage jika sedang dalam masa kebal (iFrame)
-        if (isInvincible) return;
+        if (isInvincible)
+        {
+            Debug.Log("Damage diabaikan karena Player dalam masa kebal (iFrame)!");
+            return;
+        }
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Batasi HP minimal 0
@@ -133,6 +138,23 @@ public class PlayerHealth : MonoBehaviour
             healthSlider.value = currentHealth;
         }
         Debug.Log($"Player dipulihkan! HP sekarang: {currentHealth}");
+    }
+
+    /// <summary>
+    /// Fungsi publik untuk meningkatkan batas HP Maksimal Player dan mengisinya hingga penuh.
+    /// </summary>
+    public void UpgradeMaxHealth(int newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
+        currentHealth = maxHealth; // Refill darah sampai penuh
+
+        // Update Slider UI
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = currentHealth;
+        }
+        Debug.Log($"Max HP diupgrade menjadi: {maxHealth} dan darah diisi penuh!");
     }
 
     private void Die()

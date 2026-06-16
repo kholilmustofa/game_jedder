@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyArrow : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -21,6 +22,15 @@ public class EnemyArrow : MonoBehaviour
     private void Awake()
     {
         if (arrowCollider == null) arrowCollider = GetComponent<Collider2D>();
+
+        // Pastikan ada Rigidbody2D dan konfigurasinya benar agar deteksi tabrakan stabil
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+        }
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
     public void SetDamage(int damageValue)
@@ -115,10 +125,26 @@ public class EnemyArrow : MonoBehaviour
         // Cek jika menabrak Player
         if (collision.CompareTag("Player"))
         {
-            if (collision.TryGetComponent<PlayerHealth>(out var playerHealth))
+            Debug.Log($"EnemyArrow: Menabrak objek dengan tag Player: {collision.gameObject.name}");
+            
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if (playerHealth == null)
+            {
+                playerHealth = collision.GetComponentInParent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    Debug.Log("EnemyArrow: PlayerHealth ditemukan di Parent GameObject!");
+                }
+            }
+
+            if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);
                 Debug.Log($"Anak panah musuh mengenai Player! Memberikan {damage} damage.");
+            }
+            else
+            {
+                Debug.LogWarning("EnemyArrow: Menabrak objek ber-tag Player, tetapi PlayerHealth tidak ditemukan!");
             }
 
             Hit();
@@ -140,7 +166,22 @@ public class EnemyArrow : MonoBehaviour
             arrowCollider.enabled = false;
         }
 
-        // Hancurkan langsung objek anak panah dari scene
-        Destroy(gameObject);
+        // Sembunyikan visual anak panah agar tidak terlihat melayang diam saat hancur tertunda
+        if (TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+        {
+            spriteRenderer.enabled = false;
+        }
+
+        // Jika terdapat Trail Renderer, matikan pancaran ekor dan tunggu hingga memudar sebelum dihancurkan
+        if (TryGetComponent<TrailRenderer>(out var trail))
+        {
+            trail.emitting = false;
+            Destroy(gameObject, trail.time); // Hancurkan setelah durasi waktu (lifetime) trail habis
+        }
+        else
+        {
+            // Jika tidak menggunakan trail, langsung hancurkan instan
+            Destroy(gameObject);
+        }
     }
 }

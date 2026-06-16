@@ -953,7 +953,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: -3, z: 0}
@@ -3388,7 +3388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -6, y: 3}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1369228244
@@ -5028,7 +5028,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2071830868}
   m_OnClick:
     m_PersistentCalls:

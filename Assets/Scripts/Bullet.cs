@@ -70,6 +70,10 @@ public class Bullet : MonoBehaviour
             {
                 rangedEnemy.TakeDamage(damage);
             }
+            else if (collision.TryGetComponent<BossController>(out var bossEnemy))
+            {
+                bossEnemy.TakeDamage(damage);
+            }
 
             Debug.Log($"Menabrak musuh! Memberikan {damage} damage.");
             Explode();

@@ -1402,6 +1402,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameplayMenuController
   pauseMenuPanel: {fileID: 449695949}
+  pauseMenuAnimator: {fileID: 0}
+  pauseCloseAnimDuration: 0.3
   gameOverPanel: {fileID: 1066684935}
   gameSuccessPanel: {fileID: 1635972971}
   missionPopupPanel: {fileID: 1167896378}
@@ -20242,7 +20244,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 11, y: 5, z: 0}
@@ -20426,7 +20428,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 17, y: 6, z: 0}
@@ -24370,6 +24372,14 @@ PrefabInstance:
       propertyPath: attackRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -5937998440285939072, guid: ab23dd69da120744f81a9478102677c1, type: 3}
+      propertyPath: delayAfterShoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5937998440285939072, guid: ab23dd69da120744f81a9478102677c1, type: 3}
+      propertyPath: delayBeforeShoot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3874149033006614634, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_Name
       value: Enemy_ArcherRed (1)
@@ -24384,11 +24394,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.7413874
+      value: 7.9913874
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.855396
+      value: 10.355396
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27176,11 +27186,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.6435404
+      value: 9.14354
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.429211
+      value: 10.179211
       objectReference: {fileID: 0}
     - target: {fileID: 9124517242992396209, guid: ab23dd69da120744f81a9478102677c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -47247,8 +47257,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.046809673, y: -0.24258804}
-  m_Size: {x: 0.20731449, y: 0.20731449}
+  m_Offset: {x: -0.04086876, y: -0.16534519}
+  m_Size: {x: 0.33803177, y: 0.40933228}
   m_Direction: 0
 --- !u!50 &1376837912
 Rigidbody2D:
@@ -47345,7 +47355,7 @@ Transform:
   m_GameObject: {fileID: 1376837907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.27721, y: 1.9195671, z: 0}
+  m_LocalPosition: {x: 17.52721, y: 1.1695671, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47365,7 +47375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
-  invincibilityDuration: 1
+  invincibilityDuration: 0
   healthSlider: {fileID: 205429283}
   spriteRenderer: {fileID: 1376837913}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
@@ -56881,7 +56891,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 25, y: -13, z: 0}
@@ -57042,7 +57052,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 32, y: -13, z: 0}
@@ -57755,7 +57765,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 6, y: -11, z: 0}
@@ -57870,7 +57880,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 11, y: -11, z: 0}
@@ -58192,7 +58202,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 36, y: -9, z: 0}
@@ -58744,7 +58754,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 16, y: -5, z: 0}
@@ -59733,7 +59743,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 10, y: 18, z: 0}
@@ -59986,7 +59996,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 13, y: 22, z: 0}
@@ -60285,7 +60295,7 @@ Tilemap:
       - {fileID: 8452566564028959851, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -20654063890137588, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
       - {fileID: -4636859370788984682, guid: 01678ffb077ecb4428b6d324ab5fdbe2, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 26, y: 22, z: 0}
@@ -66916,7 +66926,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.1376093}
+  m_Offset: {x: 0.005994916, y: 0.11662672}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: -0.20833333}
@@ -66926,7 +66936,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.24, y: 0.30478138}
+  m_Size: {x: 0.3299268, y: 0.34674656}
   m_EdgeRadius: 0
 --- !u!114 &1882251460
 MonoBehaviour:
@@ -66940,11 +66950,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664fadc8e35777946ab51cc179777df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SecretChest
+  chestType: 0
   damageUpgradeAmount: 10
+  newMaxHealthAmount: 0
   openAnimationDuration: 0.8
   animator: {fileID: 1882251453}
   openSoundAudio: {fileID: 1882251456}
   upgradeEffectPrefab: {fileID: 5844215866425336781, guid: 8f94af2c3f6d3974fad3b8a474d01c25, type: 3}
+  effectOffset: {x: 0, y: 0, z: 0}
   spawnEffectOnPlayer: 1
   effectDestroyDelay: 1.5
 --- !u!1001 &1882919860

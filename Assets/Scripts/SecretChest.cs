@@ -3,8 +3,16 @@ using System.Collections;
 
 public class SecretChest : MonoBehaviour
 {
+    public enum ChestType
+    {
+        DamageUpgrade,
+        HealthUpgrade
+    }
+
     [Header("Upgrade Settings")]
-    [SerializeField] private int damageUpgradeAmount = 5; // Jumlah damage yang ditambah ke peluru Player
+    [SerializeField] private ChestType chestType = ChestType.DamageUpgrade; // Pilih tipe upgrade peti di Inspector
+    [SerializeField] private int damageUpgradeAmount = 5; // Jumlah damage yang ditambah ke peluru Player (jika tipe DamageUpgrade)
+    [SerializeField] private int newMaxHealthAmount = 150; // HP Maksimal baru (jika tipe HealthUpgrade)
     [SerializeField] private float openAnimationDuration = 0.8f; // Jeda waktu (detik) dari animasi "open" sampai berganti ke "opened"
 
     [Header("Components")]
@@ -13,6 +21,7 @@ public class SecretChest : MonoBehaviour
 
     [Header("VFX Settings")]
     [SerializeField] private GameObject upgradeEffectPrefab; // Prefab efek visual upgrade (Spell Attack Up)
+    [SerializeField] private Vector3 effectOffset = Vector3.zero; // Offset posisi efek visual upgrade
     [SerializeField] private bool spawnEffectOnPlayer = true;   // Jika true, efek muncul di Player. Jika false, muncul di peti.
     [SerializeField] private float effectDestroyDelay = 1.5f;   // Durasi sebelum objek efek dihancurkan otomatis
 
@@ -86,22 +95,38 @@ public class SecretChest : MonoBehaviour
             openSoundAudio.Play();
         }
 
-        // 3. Cari Player dan tingkatkan damage pelurunya
+        // 3. Cari Player dan tingkatkan statusnya sesuai tipe peti
         PlayerController player = FindFirstObjectByType<PlayerController>();
         if (player != null)
         {
-            player.UpgradeBulletDamage(damageUpgradeAmount);
-            Debug.Log($"Peti rahasia dibuka! Damage peluru bertambah +{damageUpgradeAmount}.");
+            if (chestType == ChestType.DamageUpgrade)
+            {
+                player.UpgradeBulletDamage(damageUpgradeAmount);
+                Debug.Log($"Peti rahasia dibuka! Damage peluru bertambah +{damageUpgradeAmount}.");
+            }
+            else if (chestType == ChestType.HealthUpgrade)
+            {
+                if (player.TryGetComponent<PlayerHealth>(out var playerHealth))
+                {
+                    playerHealth.UpgradeMaxHealth(newMaxHealthAmount);
+                    Debug.Log($"Peti medis dibuka! HP Maksimal bertambah menjadi {newMaxHealthAmount} dan terisi penuh.");
+                }
+                else
+                {
+                    Debug.LogWarning("PlayerHealth tidak ditemukan pada Player!");
+                }
+            }
         }
         else
         {
             Debug.LogWarning("PlayerController tidak ditemukan di Scene!");
         }
 
-        // 4. Munculkan efek visual upgrade
+        // 4. Munculkan efek visual upgrade dengan offset
         if (upgradeEffectPrefab != null)
         {
             Vector3 spawnPosition = (spawnEffectOnPlayer && player != null) ? player.transform.position : transform.position;
+            spawnPosition += effectOffset; // Tambahkan offset posisi agar pas
             GameObject effectObj = Instantiate(upgradeEffectPrefab, spawnPosition, Quaternion.identity);
             Destroy(effectObj, effectDestroyDelay); // Hancurkan otomatis setelah durasi tertentu
             Debug.Log("Efek visual upgrade berhasil dimunculkan!");

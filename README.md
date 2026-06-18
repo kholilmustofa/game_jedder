@@ -52,16 +52,10 @@ Peti interaktif serbaguna yang dapat dikonfigurasi langsung di Inspector untuk t
 
 ---
 
-## 📁 Struktur Folder Dokumentasi
-Seluruh panduan teknis cara perakitan komponen dan penjelasan detail script telah dikelompokkan dengan rapi di dalam folder [Panduan/](file:///d:/Unity/game_jedder/Panduan/):
-* 📜 [Panduan Pembuatan Karakter MC](file:///d:/Unity/game_jedder/Panduan/Panduan%20Pembuatan%20Karakter%20Utama%20MC.md)
-* 📜 [Panduan Pembuatan Peti Rahasia](file:///d:/Unity/game_jedder/Panduan/Panduan%20Pembuatan%20Peti%20Rahasia%20%28Secret%20Chest%29.md)
-* 📜 [Panduan Konfigurasi Boss & Rage Mode](file:///d:/Unity/game_jedder/Panduan/Panduan%20Konfigurasi%20Boss%20%28Boss%20Settings%29.md)
-* 📜 [Panduan Efek Ekor Panah Musuh](file:///d:/Unity/game_jedder/Panduan/Panduan%20Pembuatan%20Efek%20Ekor%20Panah%20%28Arrow%20Trail%29.md)
-* 📜 [Panduan Pop-up Misi & Musik Awal](file:///d:/Unity/game_jedder/Panduan/Panduan%20Pembuatan%20Pop-up%20Misi%20%28Mission%20Popup%29.md)
-* 📜 [Panduan Fitur Tenggelam di Air](file:///d:/Unity/game_jedder/Panduan/Panduan%20Pembuatan%20Fitur%20Tenggelam%20di%20Air.md)
-* 📜 [Panduan Kamera Mengikuti Karakter](file:///d:/Unity/game_jedder/Panduan/Panduan%20Kamera%20Mengikuti%20Karakter.md)
-* 📜 [Panduan Kolaborasi Git & Unity](file:///d:/Unity/game_jedder/Panduan/Panduan%20Kolaborasi%20Project%20Unity.md)
+## 📂 Dokumen Instruksi & Panduan Developer
+Seluruh panduan teknis cara perakitan komponen dan penjelasan detail script telah dikelompokkan dengan rapi di dalam folder [Panduan/](file:///d:/Unity/game_jedder/Panduan/). 
+
+Kumpulan file Markdown (`.md`) di dalam folder tersebut merupakan **file instruksi acuan saya sebagai developer** dalam merancang, mengatur, dan mengembangkan setiap fitur mekanik game ini di Unity Editor secara teratur.
 
 ---
 

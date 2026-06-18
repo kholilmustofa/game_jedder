@@ -25,6 +25,7 @@ public class GameplayMenuController : MonoBehaviour
     [SerializeField] private AudioSource backgroundMusic;       // Tarik AudioSource BGM Level utama ke sini (akan dihentikan saat kalah/menang)
     [SerializeField] private AudioSource gameSuccessMusic;      // Tarik AudioSource suara kemenangan ke sini
     [SerializeField] private AudioSource gameOverMusic;         // Tarik AudioSource suara kekalahan ke sini
+    [SerializeField] private AudioSource missionPopupMusic;     // Tarik AudioSource musik popup misi ke sini
 
     private string pendingSceneName;
     private int pendingSceneIndex = -1;
@@ -80,6 +81,18 @@ public class GameplayMenuController : MonoBehaviour
         else
         {
             Debug.LogWarning("DEBUG WARNING: Mission popup animator BELUM dipasang di Inspector!");
+        }
+
+        // Matikan BGM utama sementara agar tidak menumpuk dengan musik misi
+        if (backgroundMusic != null && backgroundMusic.isPlaying)
+        {
+            backgroundMusic.Stop();
+        }
+
+        // Putar musik/suara popup misi
+        if (missionPopupMusic != null)
+        {
+            missionPopupMusic.Play();
         }
 
         if (cursorManager != null)
@@ -234,6 +247,18 @@ public class GameplayMenuController : MonoBehaviour
 
     private void ExecuteCloseMissionPopup()
     {
+        // Matikan musik popup misi jika masih menyala
+        if (missionPopupMusic != null && missionPopupMusic.isPlaying)
+        {
+            missionPopupMusic.Stop();
+        }
+
+        // Putar BGM utama level saat permainan dimulai
+        if (backgroundMusic != null)
+        {
+            backgroundMusic.Play();
+        }
+
         if (missionPopupPanel != null)
         {
             missionPopupPanel.SetActive(false);

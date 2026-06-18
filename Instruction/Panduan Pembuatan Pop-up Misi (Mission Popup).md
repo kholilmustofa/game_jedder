@@ -50,7 +50,22 @@ Panduan ini menjelaskan langkah demi langkah untuk menyusun dan menghubungkan UI
 
 ---
 
-## Langkah 4: Menambahkan Animasi Keluar (Exit Animation) pada Pop-up
+## Langkah 4: Menambahkan Musik khusus saat Misi Muncul
+
+1. Buat Game Object baru di Hierarchy (klik kanan -> **Audio** -> **Audio Source**) atau gunakan objek audio yang sudah ada. Beri nama: `MissionPopupMusic`.
+2. Masukkan klip suara/musik bertema pembukaan misi ke dalam kolom **AudioClip** pada komponen Audio Source tersebut.
+3. Hilangkan centang pada opsi **Play On Awake** pada `MissionPopupMusic` agar musiknya dikontrol secara penuh oleh script.
+4. Jika musiknya merupakan lagu pendek looping, centang opsi **Loop**.
+5. Pilih objek di **Hierarchy** tempat script **GameplayMenuController** terpasang.
+6. Seret objek **`MissionPopupMusic`** dari Hierarchy ke slot **Mission Popup Music** di jendela Inspector.
+7. **Cara Kerjanya secara Otomatis**:
+   * Saat Level baru dimuat, BGM level utama (`Background Music`) akan dihentikan sementara agar suaranya tidak bertabrakan.
+   * Musik popup misi (`Mission Popup Music`) akan mulai diputar.
+   * Begitu panel misi ditutup, musik misi akan dimatikan dan BGM level utama akan otomatis mulai diputar secara normal.
+
+---
+
+## Langkah 5: Menambahkan Animasi Keluar (Exit Animation) pada Pop-up
 
 Agar pop-up menutup dengan animasi yang halus (misalnya mengecil ke ukuran 0 atau memudar):
 
@@ -84,15 +99,16 @@ Agar pop-up menutup dengan animasi yang halus (misalnya mengecil ke ukuran 0 ata
 
 ---
 
-## Langkah 5: Melakukan Uji Coba (Testing)
+## Langkah 6: Melakukan Uji Coba (Testing)
 
 1. Tekan tombol **Play** di Unity Editor.
 2. **Hasil yang Diharapkan**:
    * Game langsung masuk kondisi **Pause** di awal level.
    * Panel misi (`MissionPopupPanel`) muncul menutupi layar.
+   * Musik pembukaan misi (`MissionPopupMusic`) mulai berputar secara terpisah, sementara BGM level utama (`Background Music`) mati/diam.
    * Kursor mouse berupa **Panah (Menu Cursor)**.
    * Klik tombol **"X"** (atau tekan **ESC** pada keyboard):
      * Suara klik tombol terputar.
+     * Musik pembukaan misi langsung berhenti berputar, dan BGM level utama (`Background Music`) mulai berputar normal mengisi suasana level.
      * Panel misi akan memutar animasi mengecil (`Scale` menuju `0`) selama 0.3 detik.
      * Setelah animasi selesai, panel misi dinonaktifkan (`SetActive(false)`), permainan berlanjut normal, dan kursor kembali menjadi crosshair (bidikan).
-

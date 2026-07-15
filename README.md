@@ -52,13 +52,6 @@ Peti interaktif serbaguna yang dapat dikonfigurasi langsung di Inspector untuk t
 
 ---
 
-## 📂 Dokumen Instruksi & Panduan Developer
-Seluruh panduan teknis cara perakitan komponen dan penjelasan detail script telah dikelompokkan dengan rapi di dalam folder [Instruction/](file:///d:/Unity/game_jedder/Instruction/). 
-
-Kumpulan file Markdown (`.md`) di dalam folder tersebut merupakan **file instruksi acuan saya sebagai developer** dalam merancang, mengatur, dan mengembangkan setiap fitur mekanik game ini di Unity Editor secara teratur.
-
----
-
 ## 🎮 Cara Bermain (Controls)
 * **Bergerak**: Tombol `W` `A` `S` `D`
 * **Membidik**: Arahkan kursor mouse
